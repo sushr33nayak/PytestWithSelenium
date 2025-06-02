@@ -23,4 +23,4 @@ jobs:
 
     - name: Run Pytests from Test Folder
       run: |
-        pytest Test/
+        pytest tests/
