@@ -6,35 +6,27 @@ This repository contains Selenium WebDriver automated tests written in Python us
 
 ## Features
 
-- Selenium WebDriver configured for **headless Chrome**
-- Test automation framework built on **Pytest**
-- Supports **Page Object Model (POM)** design pattern
-- Generates detailed **JUnit XML** and **HTML reports**
-- Integrated with **GitHub Actions** for CI/CD with manual trigger
-- Reports uploaded as artifacts for easy download and review
-- Test result summaries displayed in GitHub Checks UI
+- Selenium WebDriver configured for **headless Chrome**  
+- Test automation framework built on **Pytest**  
+- Generates detailed **HTML reports**  
+- Integrated with **GitHub Actions** for CI/CD with manual trigger  
+- Reports uploaded as artifacts for easy download and review  
+- Test result summaries displayed in GitHub Checks UI  
 
 ---
 
 ## Project Structure
 
-project-root/
-|-- tests/ # Test cases directory
-| |-- test_example.py # Sample test case
-|-- pages/ # Page Object Model classes
-| |-- base_page.py # Base page containing common functions
-| |-- login_page.py # Example page class
-|-- conftest.py # Pytest configuration and fixtures
-|-- pytest.ini # Pytest settings
-|-- requirements.txt # Python dependencies
-|-- README.md # Project documentation
-|-- .github/
-|-- workflows/
-|-- run-pytests.yml # GitHub Actions workflow file
-
-yaml
-Copy
-Edit
+    project-root/
+    |-- tests/                    # Test cases directory
+    |   |-- test_example.py       # Sample test case
+    |-- conftest.py               # Pytest configuration and fixtures
+    |-- pytest.ini                # Pytest settings
+    |-- requirements.txt          # Python dependencies
+    |-- README.md                 # Project documentation
+    |-- .github/
+        |-- workflows/
+            |-- run-pytests.yml   # GitHub Actions workflow file
 
 ---
 
@@ -45,47 +37,33 @@ Edit
    ```bash
    git clone <your-repo-url>
    cd <repo-folder>
-Create and activate a virtual environment (optional but recommended):
-
-bash
-Copy
-Edit
-python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
-Install required dependencies:
-
-bash
-Copy
-Edit
+   
+## Install required dependencies:
 pip install -r requirements.txt
-Running Tests Locally
-Execute all tests with HTML and JUnit XML reports generated:
 
-bash
-Copy
-Edit
-pytest tests/ --html=report.html --self-contained-html --junitxml=report.xml -v
-Open report.html in a browser to view a detailed, human-readable report.
+## Running Tests Locally
+pytest tests/ --html=report.html --self-contained-html 
 
-GitHub Actions Integration
-Tests are automatically run in GitHub Actions when manually triggered via the Actions tab.
+## GitHub Actions Integration
+1.Tests run in headless Chrome on GitHub’s Ubuntu runners.
 
-Tests run in a headless Chrome environment.
+2.Workflow is manually triggered via workflow_dispatch in the Actions tab.
 
-Generates and uploads JUnit XML and HTML test reports as artifacts.
+3.Generates and uploads  HTML reports as workflow artifacts.
 
-Test summaries are displayed in the GitHub Checks tab.
+4.GitHub parses HTML to display test results summary in Checks UI.
 
-How to trigger the workflow
-Go to the Actions tab in this repository.
+## How to trigger the workflow
+1.Navigate to the Actions tab in the repo.
 
-Select the Run Pytests workflow.
+2.Select the Run Pytests workflow.
 
-Click Run workflow and select the branch.
+3.Click Run workflow and choose the branch.
 
-Monitor the test run and check artifacts for reports.
+4.Monitor the workflow and download reports from artifacts.
 
-HTML report can be downloaded from the workflow artifacts for a comprehensive visual report.
+## Viewing Test Reports
+1.GitHub UI shows test summary via the HTML report.
 
-Contributing
-Contributions and suggestions are welcome! Feel free to open issues or submit pull requests.
+2.Download the HTML report artifact for a full, formatted test report.
+
