@@ -1,112 +1,91 @@
-# Pytest Selenium Project
+# Selenium Pytest Automation Framework
 
-## Overview
-This project is a test automation framework using **Pytest** and **Selenium** to automate web applications. It supports running UI tests efficiently with parallel execution, reporting, and cross-browser testing.
+This repository contains Selenium WebDriver automated tests written in Python using Pytest. The tests run in **headless Chrome** mode and are integrated with GitHub Actions for continuous testing triggered manually via workflow dispatch.
+
+---
 
 ## Features
-- **Pytest-based framework** for easy test execution and reporting
-- **Selenium WebDriver** for web UI automation
-- **Parallel test execution** using pytest-xdist
-- **Cross-browser testing** (Chrome, Firefox, Edge, etc.)
-- **Logging and reporting** with pytest-html and allure reports
-- **Page Object Model (POM) implementation** for maintainable tests
 
-## Prerequisites
-Ensure you have the following installed:
-- Python (>=3.8)
-- Google Chrome / Firefox / Edge (based on testing requirements)
-- ChromeDriver / GeckoDriver / EdgeDriver
-- Virtual Environment (optional but recommended)
+- Selenium WebDriver configured for **headless Chrome**
+- Test automation framework built on **Pytest**
+- Supports **Page Object Model (POM)** design pattern
+- Generates detailed **JUnit XML** and **HTML reports**
+- Integrated with **GitHub Actions** for CI/CD with manual trigger
+- Reports uploaded as artifacts for easy download and review
+- Test result summaries displayed in GitHub Checks UI
 
-## Installation
-Clone the repository:
-```sh
-git clone https://github.com/your-username/your-repo.git
-cd your-repo
-```
-
-Create and activate a virtual environment (optional but recommended):
-```sh
-python -m venv venv
-source venv/bin/activate  # On macOS/Linux
-venv\Scripts\activate  # On Windows
-```
-
-Install dependencies:
-```sh
-pip install -r requirements.txt
-```
+---
 
 ## Project Structure
-```
+
 project-root/
-|-- tests/                    # Test cases directory
-|   |-- test_example.py        # Sample test case
-|-- pages/                    # Page Object Model classes
-|   |-- base_page.py           # Base page containing common functions
-|   |-- login_page.py          # Example page class
-|-- utils/                    # Utility functions
-|-- conftest.py               # Configuration and fixtures
-|-- pytest.ini                # Pytest configuration file
-|-- requirements.txt          # Dependencies
-|-- README.md                 # Project documentation
-```
+|-- tests/ # Test cases directory
+| |-- test_example.py # Sample test case
+|-- pages/ # Page Object Model classes
+| |-- base_page.py # Base page containing common functions
+| |-- login_page.py # Example page class
+|-- conftest.py # Pytest configuration and fixtures
+|-- pytest.ini # Pytest settings
+|-- requirements.txt # Python dependencies
+|-- README.md # Project documentation
+|-- .github/
+|-- workflows/
+|-- run-pytests.yml # GitHub Actions workflow file
 
-## Running Tests
-Run all tests:
-```sh
-pytest
-```
+yaml
+Copy
+Edit
 
-Run tests with detailed output:
-```sh
-pytest -v
-```
+---
 
-Run tests in parallel:
-```sh
-pytest -n 4  # Run tests in 4 parallel threads
-```
+## Setup & Installation
 
-Run tests with HTML report:
-```sh
-pytest --html=report.html --self-contained-html
-```
+1. Clone the repository:
 
-Run tests with Allure report:
-```sh
-pytest --alluredir=allure-results
-allure serve allure-results
-```
+   ```bash
+   git clone <your-repo-url>
+   cd <repo-folder>
+Create and activate a virtual environment (optional but recommended):
 
-## Writing Tests
-Create a test case inside the `tests/` directory:
-```python
-from pages.login_page import LoginPage
+bash
+Copy
+Edit
+python -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+Install required dependencies:
 
-def test_login_valid_user(driver):
-    login_page = LoginPage(driver)
-    login_page.open()
-    login_page.login("testuser", "password")
-    assert login_page.is_logged_in()
-```
+bash
+Copy
+Edit
+pip install -r requirements.txt
+Running Tests Locally
+Execute all tests with HTML and JUnit XML reports generated:
 
-## Configurations
-Customize the `pytest.ini` file to configure pytest settings:
-```ini
-[pytest]
-addopts = -v --tb=short
-log_cli = true
-log_level = INFO
-```
+bash
+Copy
+Edit
+pytest tests/ --html=report.html --self-contained-html --junitxml=report.xml -v
+Open report.html in a browser to view a detailed, human-readable report.
 
-## Contributing
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature-branch`)
-3. Commit your changes (`git commit -m 'Add new feature'`)
-4. Push to the branch (`git push origin feature-branch`)
-5. Open a pull request
+GitHub Actions Integration
+Tests are automatically run in GitHub Actions when manually triggered via the Actions tab.
 
-## License
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+Tests run in a headless Chrome environment.
 
+Generates and uploads JUnit XML and HTML test reports as artifacts.
+
+Test summaries are displayed in the GitHub Checks tab.
+
+How to trigger the workflow
+Go to the Actions tab in this repository.
+
+Select the Run Pytests workflow.
+
+Click Run workflow and select the branch.
+
+Monitor the test run and check artifacts for reports.
+
+HTML report can be downloaded from the workflow artifacts for a comprehensive visual report.
+
+Contributing
+Contributions and suggestions are welcome! Feel free to open issues or submit pull requests.
