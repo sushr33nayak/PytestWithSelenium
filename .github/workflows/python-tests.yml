@@ -21,6 +21,20 @@ jobs:
         python -m pip install --upgrade pip
         pip install -r requirements.txt
 
-    - name: Run Pytests from Test Folder
+    - name: Run Pytests and generate JUnit report
       run: |
-        pytest tests/
+        pytest Test/ --junitxml=pytest-report.xml
+
+    - name: Upload test results (optional)
+      uses: actions/upload-artifact@v4
+      with:
+        name: pytest-report
+        path: pytest-report.xml
+
+    - name: Display test results in GitHub UI
+      uses: dorny/test-reporter@v1
+      if: always()  # Ensures it runs even if tests fail
+      with:
+        name: Pytest Results
+        path: pytest-report.xml
+        reporter: java-junit
