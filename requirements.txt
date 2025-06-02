@@ -7,3 +7,4 @@ python-dateutil==2.9.0.post0
 python-dotenv==1.1.0
 python-json-logger==3.3.0
 selenium==4.33.0
+webdriver_manager==4.0.2
